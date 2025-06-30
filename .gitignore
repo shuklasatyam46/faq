@@ -25,3 +25,5 @@ faq-backend/google-credentials.json
 *.njsproj
 *.sln
 *.sw?
+
+/Editor.jsx
