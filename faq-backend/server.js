@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectToMongoDB from './db/connectToMondoDB.js';
 import faqRoutes from './routes/faq.routes.js';
-import cors from 'cors';x
+import cors from 'cors';
 
 const app = express();
 dotenv.config();
