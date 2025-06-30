@@ -8,7 +8,7 @@ const app = express();
 dotenv.config();
 
 app.use(cors({
-    origin:process.env.FRONTEND_URL,
+    origin:"https://faq-1-7xad.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
