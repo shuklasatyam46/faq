@@ -50,7 +50,7 @@ export const createFAQ = async (req, res) => {
         if(!faq){
                 const newFaq= new FAQ({question,answer,languageCode});
                 await newFaq.save();
-                const translations = await translateFAQ(newFaq);
+                const translations = await translateFAQ(newFaq,languageCode);
                 const newtranslations = await Translation.insertMany(translations);
                 newFaq.translation.push(...newtranslations.map(t=>t._id));
                 await newFaq.save();

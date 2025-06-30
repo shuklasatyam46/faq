@@ -23,10 +23,10 @@ async function translateText(text, targetLanguage){
     }
 }
 
-export const translateFAQ = async (faq) => {
+export const translateFAQ = async (faq,languageCode) => {
     const translations=[];
     for(const language of supportedLanguages){
-        if(language!=process.env.DefaultLanguage){
+        if(language!==languageCode){
         const translatedQuestion = await translateText(faq.question, language);
         const translatedAnswer = await translateText(faq.answer, language);
         translations.push({faqID: faq._id,languageCode:language,question:translatedQuestion,answer:translatedAnswer});
