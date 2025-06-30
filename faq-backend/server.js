@@ -2,9 +2,14 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectToMongoDB from './db/connectToMondoDB.js';
 import faqRoutes from './routes/faq.routes.js';
+import cors from 'cors';x
 
 const app = express();
 dotenv.config();
+
+app.use(cors({
+    origin:process.env.FRONTEND_URL
+}));
 
 app.use(express.json());
 app.use("/api/faqs",faqRoutes);
