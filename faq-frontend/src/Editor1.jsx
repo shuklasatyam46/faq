@@ -10,7 +10,8 @@ function Editor1() {
   const [getData, setGetData] = useState(null);
   const [method, setMethod] = useState('Get');
   const [isChanging, setIsChanging] = useState(false);
-  const API="https://faq-cboh.onrender.com"||"localhost:3000";
+  const API="https://faq-cboh.onrender.com" 
+  const API_dev="localhost:3000";
 
   const handleSubmit =async (data) => {
     if (isAnswer) {
