@@ -42,7 +42,6 @@ export default function TiptapEditor({onSendData,isAnswer,PostData,GetData,onGet
 
   const getFaq = () => {
     onGetFaq(lang);
-    
   }
 
   

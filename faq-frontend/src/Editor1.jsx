@@ -10,8 +10,7 @@ function Editor1() {
   const [getData, setGetData] = useState(null);
   const [method, setMethod] = useState('Get');
   const [isChanging, setIsChanging] = useState(false);
-  const API="https://faq-cboh.onrender.com" 
-  const API_dev="localhost:3000";
+  const api_url=import.meta.env.VITE_API;
 
   const handleSubmit =async (data) => {
     if (isAnswer) {
@@ -20,7 +19,7 @@ function Editor1() {
       if (updated.que && updated.ans) {
         try {
           console.log("question:", updated.que, "answer:", updated.ans, "lang:", data.lang);
-          const resonse=await fetch(`${API}/api/faqs/?lang=${data.lang}`, {
+          const resonse=await fetch(`${api_url}/api/faqs/?lang=${data.lang}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -67,7 +66,7 @@ function Editor1() {
 
   const handleGet = async (data) => {
     try {
-      const response = await fetch(`${API}/api/faqs/?lang=${data}`, {
+      const response = await fetch(`${api_url}/api/faqs/?lang=${data}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

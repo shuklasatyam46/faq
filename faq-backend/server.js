@@ -1,14 +1,13 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import connectToMongoDB from './db/connectToMondoDB.js';
 import faqRoutes from './routes/faq.routes.js';
 import cors from 'cors';
 
 const app = express();
-dotenv.config();
+const api_url = process.env.API;
 
 app.use(cors({
-    origin:"https://faq-1-7xad.onrender.com",
+    origin:`${api_url}`,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
