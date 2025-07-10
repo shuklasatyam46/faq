@@ -11,7 +11,7 @@ function Editor1() {
   const [method, setMethod] = useState('Get');
   const [isChanging, setIsChanging] = useState(false);
   const [loading, setLoading] = useState(false);
-  const api_url=import.meta.env.VITE_API_DEV;
+  const api_url=import.meta.env.VITE_API;
 
   const handleSubmit =async (data) => {
     if (isAnswer) {
