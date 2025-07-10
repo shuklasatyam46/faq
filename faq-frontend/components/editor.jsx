@@ -18,7 +18,7 @@ import { BsEraserFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 
 
-export default function TiptapEditor({onSendData,isAnswer,PostData,GetData,onGetFaq,Method,isChanging}) {
+export default function TiptapEditor({onSendData,isAnswer,PostData,GetData,onGetFaq,Method,isChanging,loading}) {
 
   const [lang, setLang] = useState("en");
   const editor = useEditor({
@@ -99,12 +99,15 @@ export default function TiptapEditor({onSendData,isAnswer,PostData,GetData,onGet
         <option value="en">English</option>
         <option value="fr">French</option>
         <option value="hi">Hindi</option>
+        <option value="es">Spanish</option>
       </select>
       <button className="btn rounded-lg" onClick={getFaq}>
           Get Faqs in {lang.toUpperCase()}
+          {loading ? <div className="absolute loading loading-spinner"></div> : ""}
       </button>
         <button className='btn rounded-lg' onClick={sendData}>
           {isAnswer ? "Submit Answer" : "Submit Question"}
+          {loading ? <div className="absolute loading loading-spinner"></div> : ""}
         </button>
       </div>
     </div>

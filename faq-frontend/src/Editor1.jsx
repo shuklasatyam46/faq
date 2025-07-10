@@ -10,13 +10,15 @@ function Editor1() {
   const [getData, setGetData] = useState(null);
   const [method, setMethod] = useState('Get');
   const [isChanging, setIsChanging] = useState(false);
-  const api_url=import.meta.env.VITE_API;
+  const [loading, setLoading] = useState(false);
+  const api_url=import.meta.env.VITE_API_DEV;
 
   const handleSubmit =async (data) => {
     if (isAnswer) {
       const updated = { ...faq, ans: data.text };
       setFaq(updated);
       if (updated.que && updated.ans) {
+        setLoading(true);
         try {
           console.log("question:", updated.que, "answer:", updated.ans, "lang:", data.lang);
           const resonse=await fetch(`${api_url}/api/faqs/?lang=${data.lang}`, {
@@ -34,6 +36,8 @@ function Editor1() {
         setMethod('Post');
         } catch (error) {
           console.error("Error updating FAQ:", error);
+        } finally{
+          setLoading(false);
         }
         setIsChanging(false);
       }
@@ -66,6 +70,7 @@ function Editor1() {
 
   const handleGet = async (data) => {
     try {
+      setLoading(true);
       const response = await fetch(`${api_url}/api/faqs/?lang=${data}`, {
         method: 'GET',
         headers: {
@@ -79,12 +84,14 @@ function Editor1() {
     } 
     catch (error) {
       console.error("Error fetching FAQs:", error);
-    }}
+    }finally{
+      setLoading(false);
+    }} 
 
 
   return (
     <div className='flex flex-col flex-wrap gap-2 items-center justify-center max-w-[720px] w-full'>
-        <Editor onSendData={handleSubmit} onGetFaq={handleGet} key={isAnswer ? 'answer' : 'question'} isAnswer={isAnswer} PostData={formattedHTMLPost} GetData={formattedHTMLGet} Method={method} isChanging={isChanging}/>
+        <Editor onSendData={handleSubmit} onGetFaq={handleGet} key={isAnswer ? 'answer' : 'question'} isAnswer={isAnswer} PostData={formattedHTMLPost} GetData={formattedHTMLGet} Method={method} isChanging={isChanging} loading={loading}/>
     </div>
   )
 }
